@@ -110,12 +110,14 @@ const handleEscKey = event => {
 
 document.addEventListener('keydown', handleEscKey);
 
-lightbox.element().addEventListener('click', event => {
-  if (event.target === lightbox.element() && lightbox) {
-    lightbox.close();
-  }
-});
+if (lightbox) {
+  lightbox.element().addEventListener('click', event => {
+    if (event.target === lightbox.element()) {
+      lightbox.close();
+    }
+  });
 
-lightbox.onClose(() => {
-  document.removeEventListener('keydown', handleEscKey);
-});
+  lightbox.onClose(() => {
+    document.removeEventListener('keydown', handleEscKey);
+  });
+}
